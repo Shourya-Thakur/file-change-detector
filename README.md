@@ -1,8 +1,7 @@
 # 📁 File Change Detector
 
-![Bash](https://img.shields.io/badge/bash-4.0+-brightgreen.svg)
+![Bash](https://img.shields.io/badge/bash-3.2+-brightgreen.svg)
 ![Platform](https://img.shields.io/badge/platform-unix%20%7C%20linux%20%7C%20macOS-lightgrey.svg)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 A lightweight Unix shell script that monitors files in real-time and alerts you when their content changes.
 
@@ -179,9 +178,6 @@ This is a learning project, but suggestions and improvements are welcome!
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
 
 ## 👨‍💻 About
 
@@ -194,7 +190,5 @@ Created as part of Unix Systems Programming coursework to demonstrate:
 ---
 
 **⭐ If you find this useful, please star the repository!**
-
-**📧 Questions?** Open an issue or reach out at [your.email@example.com]
 
 *Last updated: November 2025*
