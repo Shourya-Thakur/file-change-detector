@@ -1,6 +1,6 @@
 # 📁 File Change Detector
 
-![Bash](https://img.shields.io/badge/bash-4.0+-brightgreen.svg)
+![Bash](https://img.shields.io/badge/bash-3.2+-brightgreen.svg)
 ![Platform](https://img.shields.io/badge/platform-unix%20%7C%20linux%20%7C%20macOS-lightgrey.svg)
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
