@@ -3,10 +3,7 @@
 [![Bash](https://img.shields.io/badge/bash-3.2+-brightgreen.svg)
 [![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS-blue.svg)](https://github.com)
 
-A robust Bash script for monitoring file changes in real-time using checksum verification. This tool detects modifications to single or multiple files and logs changes with timestamps.
-
-![File Change Detector Demo](https://via.placeholder.com/800x400/1a1a1a/00ff00?text=File+Change+Detector+Demo)
-> *Replace the above placeholder with your actual demo GIF or screenshot*
+A lightweight Unix shell script that monitors files in real-time and alerts you when their content changes.
 
 ## 📋 Table of Contents
 
@@ -172,36 +169,6 @@ graph TD
     F --> W[End Program]
 ```
 
-### Change Detection Process
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant Script
-    participant FileSystem
-    
-    User->>Script: Select files to monitor
-    Script->>FileSystem: Validate files exist
-    FileSystem-->>Script: Validation result
-    Script->>FileSystem: Calculate initial checksum
-    FileSystem-->>Script: Initial checksum
-    Script->>Script: Store checksum
-    
-    loop Every CHECK_INTERVAL seconds
-        Script->>FileSystem: Calculate current checksum
-        FileSystem-->>Script: Current checksum
-        Script->>Script: Compare checksums
-        alt Checksum changed
-            Script->>User: Log "File modified"
-            Script->>Script: Update stored checksum
-        else No change
-            Script->>Script: Continue monitoring
-        end
-    end
-    
-    User->>Script: Press Ctrl+C
-    Script->>User: Stop monitoring, return to menu
-```
 
 ## Configuration
 
@@ -330,8 +297,6 @@ Contributions are welcome! Here's how you can help:
 ## Star History
 
 If you find this project useful, please consider giving it a ⭐️!
-
-[![Star History Chart](https://api.star-history.com/svg?repos=yourusername/file-change-detector&type=Date)](https://star-history.com/#yourusername/file-change-detector&Date)
 
 ---
 
