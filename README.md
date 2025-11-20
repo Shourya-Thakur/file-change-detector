@@ -82,6 +82,7 @@ Enter choice [1-3]:
 **Screenshot placeholder:** 
 
 ![Main Menu](./screenshots/menu.png)
+
 *Main menu interface showing monitoring options*
 
 ### Option 1: Monitor Single File
