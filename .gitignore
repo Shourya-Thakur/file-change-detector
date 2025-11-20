@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Backup files
+*.backup
+
+# Test files (optional - remove if you want to keep test files)
+file1.txt
+test_files/sampke.txt
