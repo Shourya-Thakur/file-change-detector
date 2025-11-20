@@ -1,14 +1,5 @@
 #!/bin/bash
 
-#############################################################
-# File Change Detector - Menu Driven Version
-# A Unix utility to monitor files for content changes
-# Compatible with Bash 3.2+ (macOS compatible)
-# Author: Shourya Thakur
-# Course: Unix Systems Programming
-# Date: November 2025
-#############################################################
-
 # Configuration
 CHECK_INTERVAL=2
 LOG_FILE=""
@@ -16,9 +7,6 @@ MONITORED_FILES=()
 STORED_CHECKSUMS=()
 MONITORING_ACTIVE=false
 
-#############################################################
-# Function: print_menu
-#############################################################
 print_menu() {
     clear
     echo "================================"
@@ -27,17 +15,13 @@ print_menu() {
     echo ""
     echo "1. Monitor Single File"
     echo "2. Monitor Multiple Files"
-    echo "3. Set Check Interval"
-    echo "4. Exit"
+    echo "3. Exit"
     echo ""
-    echo "Current interval: ${CHECK_INTERVAL} seconds"
-    echo ""
-    printf "Enter choice [1-4]: "
+    printf "Enter choice [1-3]: "
 }
 
-#############################################################
 # Function: calculate_checksum
-#############################################################
+
 calculate_checksum() {
     local file="$1"
     
@@ -52,9 +36,8 @@ calculate_checksum() {
     fi
 }
 
-#############################################################
 # Function: validate_file
-#############################################################
+
 validate_file() {
     local file="$1"
     
@@ -71,9 +54,8 @@ validate_file() {
     return 0
 }
 
-#############################################################
 # Function: log_message
-#############################################################
+
 log_message() {
     local message="$1"
     local timestamp=$(date '+%Y-%m-%d %H:%M:%S')
@@ -86,9 +68,8 @@ log_message() {
     fi
 }
 
-#############################################################
 # Function: get_checksum_for_file
-#############################################################
+
 get_checksum_for_file() {
     local target_file="$1"
     local index=0
@@ -103,9 +84,8 @@ get_checksum_for_file() {
     echo ""
 }
 
-#############################################################
 # Function: update_checksum_for_file
-#############################################################
+
 update_checksum_for_file() {
     local target_file="$1"
     local new_checksum="$2"
@@ -120,16 +100,14 @@ update_checksum_for_file() {
     done
 }
 
-#############################################################
 # Function: handle_interrupt
-#############################################################
+
 handle_interrupt() {
     MONITORING_ACTIVE=false
 }
 
-#############################################################
 # Function: start_monitoring
-#############################################################
+
 start_monitoring() {
     local files=("$@")
     
@@ -146,8 +124,8 @@ start_monitoring() {
             index=$((index + 1))
         else
             echo ""
-            echo "Returning to menu in 2 seconds..."
-            sleep 2
+            echo "Returning to menu..."
+            sleep 1
             return 1
         fi
     done
@@ -156,13 +134,9 @@ start_monitoring() {
     log_message "Press Ctrl+C to stop"
     echo ""
     
-    # Set monitoring flag
     MONITORING_ACTIVE=true
-    
-    # Set up signal trap
     trap handle_interrupt SIGINT SIGTERM
     
-    # Monitoring loop
     while $MONITORING_ACTIVE; do
         for file in "${MONITORED_FILES[@]}"; do
             if [ ! -f "$file" ]; then
@@ -181,26 +155,22 @@ start_monitoring() {
         sleep "$CHECK_INTERVAL"
     done
     
-    # After loop exits
     echo ""
     echo ""
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] Monitoring stopped."
     echo ""
-    echo "Returning to menu in 2 seconds..."
-    sleep 2
+    echo "Returning to menu..."
+    sleep 1
     
-    # Reset trap
     trap - SIGINT SIGTERM
     
-    # Clean up
     MONITORED_FILES=()
     STORED_CHECKSUMS=()
     LOG_FILE=""
 }
 
-#############################################################
 # Function: option_single_file
-#############################################################
+
 option_single_file() {
     clear
     echo "Monitor Single File"
@@ -218,9 +188,8 @@ option_single_file() {
     start_monitoring "$filepath"
 }
 
-#############################################################
 # Function: option_multiple_files
-#############################################################
+
 option_multiple_files() {
     clear
     echo "Monitor Multiple Files"
@@ -239,42 +208,6 @@ option_multiple_files() {
     start_monitoring "${filepaths[@]}"
 }
 
-#############################################################
-# Function: option_set_interval
-#############################################################
-option_set_interval() {
-    clear
-    echo "Set Check Interval"
-    echo "------------------"
-    echo ""
-    echo "Current interval: ${CHECK_INTERVAL} seconds"
-    echo ""
-    echo "How often should the program check for changes?"
-    echo "  - Lower value (1-2) = Faster detection, more CPU usage"
-    echo "  - Higher value (5-10) = Slower detection, less CPU usage"
-    echo ""
-    printf "Enter new interval in seconds: "
-    read -r interval
-    
-    if [ -z "$interval" ]; then
-        echo "Keeping current interval: ${CHECK_INTERVAL} seconds"
-        sleep 2
-        return
-    fi
-    
-    if echo "$interval" | grep -qE '^[0-9]+$'; then
-        CHECK_INTERVAL=$interval
-        echo "Interval updated to ${CHECK_INTERVAL} seconds"
-    else
-        echo "Invalid input! Interval must be a number"
-    fi
-    
-    sleep 2
-}
-
-#############################################################
-# Main Program Loop
-#############################################################
 main() {
     while true; do
         print_menu
@@ -288,21 +221,18 @@ main() {
                 option_multiple_files
                 ;;
             3)
-                option_set_interval
-                ;;
-            4)
                 clear
                 echo "Thank you for using File Change Detector!"
                 echo ""
                 exit 0
                 ;;
             *)
-                echo "Invalid choice! Please enter 1-4"
+                echo "Invalid choice! Please enter 1-3"
                 sleep 1
                 ;;
         esac
     done
 }
 
-# Run the main program
 main
+
